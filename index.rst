@@ -13,7 +13,7 @@ Contents:
    :maxdepth: 3
 
    intro
-   context/index
+   context
    development/index
    release/index
    stateofart
