@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-SANET - release story for a network management FLOSS software
-=============================================================
+SANET - rilascio di un prodotto per il monitoraggio delle reti
+==============================================================
 
 Contents:
 
