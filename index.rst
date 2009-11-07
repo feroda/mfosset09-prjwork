@@ -14,8 +14,8 @@ Contents:
 
    intro
    context
-   development/index
-   release/index
+   development
+   release
    stateofart
    retrospectiveandfuture
    security
