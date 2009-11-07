@@ -120,17 +120,32 @@ uno strumento di proprietà dell'azienda per offrire il servizio concordato.
 
 Inoltre la presentazione dei risultati sarebbe avvenuta tramite interfaccia web
 e quindi anche in questo caso si sarebbe rimasti nel pieno della legittimità
-a meno di non integrare software basato su licenza `Affero GPLv3 <http://www.fsf.org>`__ o simile.
+a meno di non integrare software basato su licenza `Affero GPLv3 <http://www.fsf.org>`__ o
+con simili requisiti a tutela di libertà per l'utente.
 
 Quando
 ------
 
-Nel 2005 io, Luca Ferroni, venni assunto ai LABS con lo scopo di migliorare 
-il sistema di monitoraggio esistente e già in uso presso questa azienda dal TODO.
+Il lavoro di analisi, definizione obiettivi e progettazione della nuova architettura è
+iniziato nel 2005. 
 
-Dopo aver preso parte ad alcuni lavori in essere, mi sono dedicato alla progettazione del nuovo sistema
-insieme con l'Ing. Michele Bergonzoni esperto di reti dell'azienda e autore dello strumento preesistente.
+I più diffusi sistemi open source esistenti per il monitoraggio delle reti erano già
+conosciuti dagli esperti di rete LABS e non si è ritenuto opportuno fare un'approfondita valutazione
+di integrabilità con l'esistente.
 
-Da quel momento in poi il lavoro è stato più o meno seguito da 
+In quel periodo `ZenOSS <http://zenoss.org>`__ , uno dei progetti open source più frequentati 
+su `SourceForge.net <http://sourceforge.net>`__ e più attivi al momento della scrittura di questo documento, 
+non era ancora stato avviato.
+
+Quindi, considerando anche l'ampia base di controlli sviluppati dall'azienda, i casi di successo riscontrati
+e le modalità operative assodate, ci si è diretti verso lo sviluppo di una nuova soluzione,
+accettando in questo modo di non approfittare di comunità già consolidate sui temi del network management.
+
+Questa scelta ha ovviamente avuto un impatto decisivo sull'impostazione dello sviluppo della nuova piattaforma
+che voleva a questo punto evolvere dalla precedente senza rompere con il passato per continuare appunto,
+a consolidare la strada già intrapresa.
+
+Si presentava lo scenario di rimpiazzare in corsa: non interrompere il servizio, ma rimpiazzare gradualmente parti
+di software migliorandone gradualmente la qualità complessiva.
 
 
