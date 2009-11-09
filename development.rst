@@ -103,28 +103,80 @@ all'utente medio. Una svolta epocale per i LABS: da quel momento non sarebbero s
 visibilità totale e `macchinosa` degli eventi, ma tutti avrebbero avuto un'idea delle problematiche
 o quantomeno avrebbero saputo di qualcosa che non stava funzionando nel modo atteso.
 
-...e anche dove ciò stava accadendo: SANET infatti implementava il meccanismo dei contenitori.
+...e anche di dove ciò stava accadendo: SANET infatti implementava il meccanismo dei contenitori
+che era totalmente assente nel sistema precedente.
 
+`Pinger` nel contempo era stato adattato all'interazione con lo RDBMS e continuava ad essere eseguito con le seguenti mansioni:
 
+* interpretazione della configurazione per i controlli
+* monitoraggio: verifica dello stato e aggiornamento misurazioni
 
-TODO: pinger configura e scrive su db
+Le caratteristiche dei controlli, il loro stato e il valore delle misurazioni venivano scritti nel database
+e letti dall'application server che ne poteva così produrre la rappresentazione
 
-Fase 2: CLI
---------------
+TODO: immagine con DB e Django + Pinger
 
-Ridefinizione configurazione, nuova parte di db scrivibile tramite cli simile a Cisco IOS.
+Fase 2: CLI e mappe
+-------------------
 
-Pinger effettua solamente i controlli
+Il risultato raggiunto nella rappresentazione dell'attività di monitoraggio non era nemmeno paragonabile
+alla versione precedente, quindi le priorità stringenti erano soddisfatte.
+
+A questo punto il lavoro è proseguito da un lato con il potenziamento dell'interfaccia web e quindi:
+
+* le mappe topologiche delle reti (a cui è dedicata una sezione separata)
+* interazione minimale: ricerca e gestione di appunti, note temporanee
+
+dall'altro con l'implementazione della `Command Line Interface` (CLI).
+
+Con la CLI è stata colta l'occasione per potenziare l'espressività della tassonomia dei controlli
+definibili nel sistema e implementare un'interfaccia per l'operatore di rete esperto: non a caso
+l'interprete dei comandi che è stato implementato è simile a quello del sistema operativo Cisco IOS 
+molto diffuso e apprezzato fra gli esperti di reti.
+
+La CLI è realizzata interamente in Python e si appoggia allo stesso modello di dati
+costruito per la parte web. Ciò è stato un notevole pregio nell'aver scelto una soluzione come Django
+che implementa in modo chiaro la separazione delle componenti; oltre ovviamente al beneficio
+di utilizzare software libero che ci ha consentito di copiare le funzioni di inizializzazione di Django
+e riportarle nella procedura di inizializzazione della CLI.
+
+L'interprete dei comandi è sviluppato in modo molto semplice e pratico. Anche qui si nota, come nel vecchio pinger,
+l'approccio sistemistico fatto di funzioni piuttosto che di classi ed ereditarietà, di variabili globali invece 
+di attributi statici di classe, o ancor meglio un passaggi per riferimento.
+
+Anche l'output della CLI viene prodotto su misura e in un primo momento non si pensa alla possibilità di astrarre
+backend di output in modo da poter inizializzare lo stesso codice su backend testuale, ncurses, o grafico piuttosto che di socket di rete.
+
+Per fortuna successivamente, appena possibile, non è stato troppo impegnativo l'intervento degli sviluppatori
+per aprire questo spiraglio nella rappresentazione dell'output,
+mentre purtroppo per le variabili globali o la strutturazione del codice ci si è dovuti accontentare 
+dell'implementazione realizzata e che comunque, a onor del vero, funziona.
+
+Con la CLI viene implementata nel database tutta la parte di configurazione di SANET (categorie, attributi, istanze)
+e quindi ristrutturato il vecchio sistema di template e definizione dei controlli: la compatibilità è rotta,
+anche se la logica di fondo rimane simile. I sistemisti al lavoro nelle installazioni in produzione di SANET
+si trovano disorientati e rallenta di molto il processo di aggiornamento delle installazioni da quella che era 
+la versione 1.4 alla versione 2.0 (poi diventate 0.1.4 e 0.2.0 con il rilascio alla comunità open source).
+
+In questa fase viene sottovalutato l'impatto di un tale aggiornamento e si interrompe il dialogo fra i sistemisti
+e gli sviluppatori, facendo sì che solo dopo alcuni mesi ci si accorga del mancato avanzamento delle installazioni
+in produzione.
+
+In ogni caso, è stato raggiunto un altro importante obiettivo: il potenziamento della tassonomia dei controlli. Ora si possono definire molti più controlli con meno sforzo.
+
+`Pinger` è stato adattato per leggere la nuova configurazione dal database e continua la sua attività come strumento di monitoraggio e quindi di aggiornamento dello stato.
+
+La configurazione e la rappresentazione sono in mano a SANET. Notare che non viene provvisto, e ad oggi non è ancora implementato, un modo per configurare via web i parametri dei controlli: ciò è dovuto dalla consapevolezza delle complesse realtà di rete gestite dall'azienda che non si possono normalizzare con l'esposizione di interfacce cosiddette `user-friendly`.
+
+TODO: immagine con DB e Django + CLI + Pinger
 
 Fase 3: Poller
 --------------
 
 Diego Billi entra nella squadra. Obiettivo riscrivere pinger in python
 
-TODO: immagini ... da pinger a db con visualizzazione, a poller
+TODO: immagine con DB e Django + CLI + Poller
 
-
-TODO: immagine nuova architettura (da documento sviluppo R1.4 credo o giu' di li)
 
 Uno sforzo importante: le mappe
 -------------------------------
