@@ -95,6 +95,10 @@ TODO: mettere schema E-R ?
 
 Evidenziare che la parte "tree" è nuova rispetto a pinger.
 
+Gli alberi sono ...
+I contenitori sono .....
+
+
 SANET visualizza lo stato della rete
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -173,13 +177,47 @@ TODO: immagine con DB e Django + CLI + Pinger
 Fase 3: Poller
 --------------
 
-Diego Billi entra nella squadra. Obiettivo riscrivere pinger in python
+Entra un nuovo sviluppatore nella squadra. Obiettivo riscrivere pinger in Python e con questo:
+
+* decurtare le ultime rimanenze di `pinger`
+* aumentare l'espressività del linguaggio per la definizione delle espressioni con cui verificare lo stato e di effettuare le misurazioni
+* avere un sistema più scalabile grazie al multithread
+
+Se prima ci si era occupati dei meccanismi di ereditarietà fra i controlli e le categorie, ora ci si concentra sulla singola espressione da verificare. Si realizza un linguaggio con una propria grammatica, dotato di contesto e operatori con tipizzazione dinamica degli operandi. Questa nuova implementazione consente di esprimere ulteriori tipi di controlli; vegnono implementate:
+
+* funzioni di adiacenza bgp/ospf
+* controlli su ntp
+* interrogazione WMI tramice wmic per i server Windows
+* esecuzione comandi esterni (e quindi integrazione ZenPacks, JMX o plugins di Nagios)
+* wildcards per OID SNMP
+* operatori di match sottostringa
+
+oltre al meccanismo di escalation che consente di ridurre al minimo il rumore per gli allarmi `a cascata`.
+
+Anche in questo caso si può sfruttare il modello di dati già usato dalla CLI e dall'application server 
+e, vista l'elevata occupazione di memoria e la frequenza di operazioni di update del database, 
+si implementano meccanismi ad-hoc che sono più performanti di quelli offerti dal framework.
+
+Non mancano i bug nella libreria NetSNMP e nel suo binding Python: vengono segnalati, uno minore viene risolto,
+per il resto si trovano workaround.
+
+Frattanto prosegue lo sviluppo delle mappe e il lavoro di promozione presso i clienti dell'azienda.
+
+La realizzazione del `poller` è la svolta finale che consente al gruppo di procedere verso il rilascio.
+Ora il vecchio `pinger` è completamente sradicato e SANET lo sostituisce completamente superandone i limiti.
+
+Un ulteriore miglioramento per la fruibilità dei dati è costituito dalla segnalazione degli allarmi tramite feed RSS,
+o dal recupero degli stessi tramite una semplice interfaccia XML-RPC che ricorda l'operazione snmpwalk.
 
 TODO: immagine con DB e Django + CLI + Poller
 
-
 Uno sforzo importante: le mappe
 -------------------------------
+
+Dopo la rappresentazione dell'attività di monitoraggio in un'interfaccia web 2.0 si è deciso di implementare 
+subito la visualizzazione delle mappe di rete per i contenitori.
+
+
 
 Framework Flex rilasciato in Open Source da Adobe.
 Questo ci ha consentito di non comprare costose licenze che per implementare .... 
