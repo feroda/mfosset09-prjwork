@@ -217,9 +217,18 @@ Uno sforzo importante: le mappe
 Dopo la rappresentazione dell'attività di monitoraggio in un'interfaccia web 2.0 si è deciso di implementare 
 subito la visualizzazione delle mappe di rete per i contenitori.
 
+In passato era stata implementata una versione basata su `Scalable Vector Graphic` (SVG) in modo da ottenere
+un risultato più aperto rispetto all'alternativa Flash di Macromedia ora Adobe.
+
+Se da un lato lo standard SVG è comodo in quanto XML puro scrivibile comodamente anche tramite
+il sistema di template messo a disposizione da Django, dall'altro si verificano molte mancanze
+e quindi si è valutato il passaggio da SVG a Flash.
+
+TODO: inserire parte wiki SVG o Flash ?
+
+Nel frattempo Adobe ha rilasciato in Open Source il framework Flex ...
 
 
-Framework Flex rilasciato in Open Source da Adobe.
 Questo ci ha consentito di non comprare costose licenze che per implementare .... 
 Di rimanere svincolati. E di poter applicare delle modifiche a librerie cui ci siamo appoggiati
 
