@@ -120,7 +120,7 @@ uno strumento di proprietà dell'azienda per offrire il servizio concordato.
 
 Inoltre la presentazione dei risultati sarebbe avvenuta tramite interfaccia web
 e quindi anche in questo caso si sarebbe rimasti nel pieno della legittimità
-a meno di non integrare software basato su licenza `Affero GPLv3 <http://www.fsf.org>`__ o
+a meno di integrare software basato su licenza `Affero GPLv3 <http://www.fsf.org>`__ o
 con simili requisiti a tutela di libertà per l'utente.
 
 Quando
