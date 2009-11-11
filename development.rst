@@ -85,19 +85,39 @@ come:
 A questo punto si è definito il modello dei dati che verrà popolato dall'attività di monitoraggio
 di `pinger`: questi saranno i dati visualizzati nell'interfaccia web.
 
-INIL, STATE, TREE
-^^^^^^^^^^^^^^^^^
+INIL, SITEATTR, FOREST
+^^^^^^^^^^^^^^^^^^^^^^
 
 Il database è stato progettato in 3 parti logicamente suddivise:
 
-TODO: recuperare materiale da wiki
-TODO: mettere schema E-R ?
+* INIL (icon, node, interface, link): contiene le tabelle base che
+  rappresentano la topologia della rete e le icone. In questa parte
+  rientrano anche le configurazioni dei controlli, sebbene l'acronimo non le comprenda
+* SITEATTR (siteattr): contiene una tabella con il registro globale di configurazione del
+  sito (nome, ultima modifica, numero di thread, etc.)                                     
+* FOREST: (tree, container, node_tree_pos): contiene le tabelle per      
+  rappresentare alberi di contenitori, e per posizionare i nodi nei contenitori..  
 
-Evidenziare che la parte "tree" è nuova rispetto a pinger.
 
-Gli alberi sono ...
-I contenitori sono .....
+Nella prima fase l'implementazione di INIL si è concentrata sulle 
+tabelle contenenti le informazioni di configurazione e di stato dei controlli. Per quello che riguarda
+i nodi e le interfacce di rete si è pensato di inserire solo le informazioni anagrafiche indispensabili
+alla rappresentazione, mentre i link sono stati totalmente relegati al momento dell'implementazione futura delle mappe topologiche.
 
+Realizzare SITEATTR è stato ovviamente banale una volta deciso di memorizzare queste informazioni
+nel database è bastato dedicare una tabella con parametri e valori globali all'applicazione.
+
+La parte FOREST è una parte totalmente nuova rispetto a `pinger` e si è deciso di realizzarla subito.
+Essa è risultata di fondamentale importanza per catalogare le risorse della rete e quindi offrire all'utente
+viste specializzate dell'ambiente monitorato.
+
+I contenitori sono strutturati ad albero in modo analogo alle directory strutturate nella gerarchia del file system. In questa metafora è come se i nodi di rete fossero i file da catalogare nelle directory. In SANET tuttavia l'espressività della categorizzazione è maggiore rispetto a quella del file system in quanto un nodo di rete può essere associato a diversi contenitori che non appartengono allo stesso albero.
+Ogni albero identifica una tipologia di categorizzazione e i contenitori una specifica categoria. Alberi comunemente usati sono relativi alla dislocazione geografica degli apparati, alla gerarchia di responsabilità, o ancora alla tipologia dei nodi di rete in esso contenuti.
+Classificare un nodo di rete in contenitori di alberi diversi in SANET significa applicare quei concetti di tag o categorizzazione duttile tipici delle folksonomie del Web 2.0.
+
+Considerando che ogni pagina di SANET è la rappresentazione di ciò che è contenuto nella risorsa selezionata,
+usare in modo corretto i contenitori consente di offrire a vari utenti specifici cruscotti tramite i quali
+osservare l'andamento delle risorse di rete di propria responsabilità o comunque le risorse per lui interessanti.
 
 SANET visualizza lo stato della rete
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -211,31 +231,6 @@ o dal recupero degli stessi tramite una semplice interfaccia XML-RPC che ricorda
 
 TODO: immagine con DB e Django + CLI + Poller
 
-Uno sforzo importante: le mappe
--------------------------------
-
-Dopo la rappresentazione dell'attività di monitoraggio in un'interfaccia web 2.0 si è deciso di implementare 
-subito la visualizzazione delle mappe di rete per i contenitori.
-
-In passato era stata implementata una versione basata su `Scalable Vector Graphic` (SVG) in modo da ottenere
-un risultato più aperto rispetto all'alternativa Flash di Macromedia ora Adobe.
-
-Se da un lato lo standard SVG è comodo in quanto XML puro scrivibile comodamente anche tramite
-il sistema di template messo a disposizione da Django, dall'altro si verificano molte mancanze
-e quindi si è valutato il passaggio da SVG a Flash.
-
-TODO: inserire parte wiki SVG o Flash ?
-
-Nel frattempo Adobe ha rilasciato in Open Source il framework Flex ...
-
-
-Questo ci ha consentito di non comprare costose licenze che per implementare .... 
-Di rimanere svincolati. E di poter applicare delle modifiche a librerie cui ci siamo appoggiati
-
-Grafi semplici
-
-Pydot, Clustering etc. etc.
- 
 L'impulso del master FOSSET
 ---------------------------
 

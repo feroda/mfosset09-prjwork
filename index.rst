@@ -15,11 +15,13 @@ Contents:
    intro
    context
    development
+   networkmaps
    release
    stateofart
    retrospectiveandfuture
    appendix/security
    appendix/oss-nms
+   appendix/SVG_or_FLASH.rst
 
 Indices and tables
 ==================
