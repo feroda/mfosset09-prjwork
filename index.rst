@@ -18,7 +18,8 @@ Contents:
    release
    stateofart
    retrospectiveandfuture
-   security
+   appendix/security
+   appendix/oss-nms
 
 Indices and tables
 ==================
