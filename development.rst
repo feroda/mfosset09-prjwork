@@ -231,17 +231,58 @@ o dal recupero degli stessi tramite una semplice interfaccia XML-RPC che ricorda
 
 TODO: immagine con DB e Django + CLI + Poller
 
-L'impulso del master FOSSET
----------------------------
+L'impulso del master FOSSET0809
+-------------------------------
+
+Durante questo ultimo anno ho avuto modo di frequentare il Master FOSSET
+su proposta e con il sovvenzionamento dell'azienda.
+
+Ritengo opportuno dedicare una breve sezione all'influenza che questa attività
+di formazione ha avuto sul processo di sviluppo di SANET.
+
+Un apporto importante si è verificato nella filiera di sviluppo di
+tutto il software aziendale grazie al corso di `Strumenti di sviluppo collaborativo`
+e in particolare:
+
+* presentazione degli hooks per i sistemi di versionamento e loro messa in pratica in laboratorio
+* ripasso di strumenti di literate programming 
+
+
+In questo modo abbiamo potuto realizzare l'infrastruttura di sviluppo presentata 
+in figura :fig:`infrastruttura` TODO.
 
 TODO: immagine ... infrastruttura di sviluppo
 
-Hooks 
-Literate programming
+Per quello che riguarda il corso di `Project management` invece, abbiamo cercato di mantenere,
+man mano che il team si allargava (con l'arrivo del nuovo sviluppatore) un approccio Agile alla risoluzione 
+dei problemi, anche se non c'erano risorse per implementare il vero e proprio Scrum.
 
-Syslog collector (immagine)
+Altri tentativi di adozione sono stati:
 
-Test Driven Development
+* la tecnica del pomodoro
+* test driven development
+
+entrambi interessanti, ma purtroppo naufragati a causa del piccolo team autogestito
+e soprattutto del fatto che la crescita deve procedere per gradi.
+
+Alcune sperimentazioni sono state fatte coi progetti:
+
+* Django history realizzato per `Fondamenti di sistemi liberi` ci ha consentito di sperimentare 
+  un meccanismo versatile ed efficace di mantenere
+  uno storico temporale generico di tabelle di database. L'implementazione realizzata supera alcuni
+  dei limiti rilevati dall'autore Marty Alchin che purtroppo non ha più risposto ai miei messaggi. 
+  In ogni caso il modulo realizzato può essere tranquillamente integrato così come è in SANET 
+  per la gestione del log dei cambi di stato.
+
+* Syslog collector per il corso di `Reti` è stato rilasciato come ulteriore prodotto LABS su
+  http:// . Esso consente a SANET di implementare una serie innumerevole di nuovi controlli
+  dato che esporta via SNMP informazioni su match di espressioni regolari in messaggi di syslog.
+
+  TODO: Syslog collector (immagine)
+
+* Il lavoro effettuato per il supporto ai prepared statement in Django con backend PostgreSQL per il 
+  corso di `Base di dati e applicazioni web` è servito per capire che non avremmo avuto un aumento
+  di performance significativo con l'introduzione in SANET degli statement precompilati. 
 
 
 Il rilascio...
