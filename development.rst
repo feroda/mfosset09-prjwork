@@ -244,9 +244,8 @@ Un apporto importante si è verificato nella filiera di sviluppo di
 tutto il software aziendale grazie al corso di `Strumenti di sviluppo collaborativo`
 e in particolare:
 
-* presentazione degli hooks per i sistemi di versionamento e loro messa in pratica in laboratorio
-* ripasso di strumenti di literate programming 
-
+* uso degli hooks per i sistemi di versionamento
+* strumenti di literate programming 
 
 In questo modo abbiamo potuto realizzare l'infrastruttura di sviluppo presentata 
 in figura :fig:`infrastruttura` TODO.
@@ -255,7 +254,7 @@ TODO: immagine ... infrastruttura di sviluppo
 
 Per quello che riguarda il corso di `Project management` invece, abbiamo cercato di mantenere,
 man mano che il team si allargava (con l'arrivo del nuovo sviluppatore) un approccio Agile alla risoluzione 
-dei problemi, anche se non c'erano risorse per implementare il vero e proprio Scrum.
+dei problemi, anche se non c'erano risorse per implementare un vero e proprio Scrum come avrei voluto.
 
 Altri tentativi di adozione sono stati:
 
@@ -263,26 +262,25 @@ Altri tentativi di adozione sono stati:
 * test driven development
 
 entrambi interessanti, ma purtroppo naufragati a causa del piccolo team autogestito
-e soprattutto del fatto che la crescita deve procedere per gradi.
+e dal fatto che la crescita deve procedere per gradi.
 
-Alcune sperimentazioni sono state fatte coi progetti:
+Alcune sperimentazioni e introduzioni importanti sono derivate dai progetti:
 
 * Django history realizzato per `Fondamenti di sistemi liberi` ci ha consentito di sperimentare 
-  un meccanismo versatile ed efficace di mantenere
-  uno storico temporale generico di tabelle di database. L'implementazione realizzata supera alcuni
+  un meccanismo versatile ed efficace per mantenere con Django
+  uno storico temporale di alcune tabelle del database. L'implementazione realizzata supera alcuni
   dei limiti rilevati dall'autore Marty Alchin che purtroppo non ha più risposto ai miei messaggi. 
   In ogni caso il modulo realizzato può essere tranquillamente integrato così come è in SANET 
   per la gestione del log dei cambi di stato.
 
 * Syslog collector per il corso di `Reti` è stato rilasciato come ulteriore prodotto LABS su
-  http:// . Esso consente a SANET di implementare una serie innumerevole di nuovi controlli
+  http://syslog-agentx.sourceforge.net/ . 
+  Esso consente a SANET di implementare una serie innumerevole di nuovi controlli
   dato che esporta via SNMP informazioni su match di espressioni regolari in messaggi di syslog.
 
   TODO: Syslog collector (immagine)
 
 * Il lavoro effettuato per il supporto ai prepared statement in Django con backend PostgreSQL per il 
   corso di `Base di dati e applicazioni web` è servito per capire che non avremmo avuto un aumento
-  di performance significativo con l'introduzione in SANET degli statement precompilati. 
+  di performance significativo con l'introduzione in SANET degli statement precompilati.
 
-
-Il rilascio...
