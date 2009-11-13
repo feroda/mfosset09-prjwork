@@ -96,15 +96,62 @@ Lato server
 &&&&&&&&&&&
 
 Innanzi tutto è stata ristrutturata la parte server. 
-Gli elementi che sono presenti nella mappa vengono definiti in un documento XML.
+
+È stata creata una nuova applicazione Django denominata `map` che si appoggia ad
+un modello di dati `ibrido`. Da una parte esso include le classi `MapEnv` e `MapOpenContainer` 
+che si appoggiano a tabelle nel database. Dall'altra le 
+classi `MapRoot`, `OpenContainer`, `OpenNode`, `ClosedContainer`, `ClosedNode`, `ClosedIface`, `MapEdge` che non 
+hanno un corrispettivo nel database, ma fungono da classi `proxy` gli oggetti di SANET e i corrispondenti `dot` di `graphviz`.
+
+`MapEnv` contiene la lista delle mappe disponibili nel sistema con gli attributi relativi. 
+Essa ha 2 campi fondamentali:
+
+* `bound_container`: una chiave esterna che identifica a quale contenitore è associata la mappa,
+  ossia relativamente a quale contenitore deve essere visualizzata. Possono esistere più mappe associate
+  allo stesso contenitore. Per soddisfare l'esigenza di rappresentazione di mappe di adiacenza si è
+  pensato di introdurre la possibilità di associare mappe arbitrarie ad ogni contenitore
+* `open_containers`: che è un campo molti-a-molti attraverso il quale ogni mappa identifica i contenitori
+  aperti da rappresentare. Le risorse visualizzate nella mappa saranno tutte quelle direttamente incluse 
+  nei contenitori aperti. 
+  In questo caso la tabella referenziata è proprio quella della classe `MapOpenContainer` che pertanto non ha bisogno di descrizione: il suo scopo è infatti di rappresentare la relazione molti-a-molti che esiste fra MapEnv e Container.
+
+Di seguito il semplice schema E-R dell'applicazione `map`.
+
+TODO: schema E-R per le mappe
+
+Come dicevamo 
+`MapRoot`, `OpenContainer`, `OpenNode`, `ClosedContainer`, `ClosedNode`, `ClosedIface`, `MapEdge` non 
+  si appoggiano al database, ma fungono classi `proxy` verso due tipi di oggetti: una risorsa di SANET (contenitore, nodo, interfaccia) e il corrispondente oggetto `pydot` che è il binding python per il `dot` di `graphviz`.
+
+`MapRoot` rappresenta la radice della mappa e fa da proxy rispetto agli oggetti di classe `MapEnv` e `pydot.Dot`.
+Ottiene le informazioni dall'istanza `MapEnv` e procede ad istanziare gli altri oggetti di classi derivate da `BaseDot` (che sarebbero poi gli `Open*` e `Closed*`). Infine processa tutti i link delle interfacce istanziate nella mappa e istanzia gli oggetti di classe `Edge`. `MapRoot` fa anche qualcosa di più: crea un container radice virtuale per ogni mappa in modo da avere coerenza anche in caso di contenitori aperti appartenenti a due gerarchie di contenitori differenti. In questo modo la rappresentazione di mappe arbitrarie è ricondotta al medesimo problema di rappresentazione della mappa di un singolo contenitore con possibilità di contenitori aperti innestati.
+
+Le classi `Open*` e `Closed*` derivano da una classe comune `BaseDot` che ha il compito di isolare questa logica
+di `proxy` verso le risorse di SANET e di `pydot`.
+
+Istanziando un oggetto di classe `Open` si avrà a che fare con una risorsa di SANET e un'istanza di `pydot.Cluster`. Mentre istanziando un oggetto di classe `Closed` si avrà a che fare con una risorsa di SANET e un'istanza di `pydot.Node`. Ciò significa che è stata completamente scorporata la natura intrinseca della risorsa di SANET dalla sua rappresentazione: se si vuole aprire un contenitore si passerà da un oggetto `ClosedContainer` a un oggetto `OpenContainer` che includeranno al proprio interno la stessa risorsa `Container` di SANET.
+
+Allo stesso modo per i nodi: se voglio esplodere un nodo, ossia visualizzare tutte le interfacce all'interno in modo dettagliato per poter, in futuro, spostare il cavo UTP o la fibra da un'interfaccia a un'altra, posso farlo passando semplicemente da un `ClosedNode` a un `OpenNode`.
+
+`MapEdge` è una classe che include un oggetto `pydot.Edge` e un'interfaccia sorgente e una destinazione.
+
+Le mappe attuali utilizzano:
+
+* `OpenContainer` per rappresentare i contenainer aperti
+* `ClosedContainer` per rappresentare i container chiusi
+* `ClosedNode` per rappresentare i nodi
+* `MapEdge` per gli archi
+
+
+Gli elementi innestati in `MapRoot` mappa vengono serializzati in un documento XML.
 La prima versione prevedeva solamente elementi di tipo:
 
 * **<node>**: vertice del grafo, poteva essere un nodo o un contenitore
 * **<iface>**: elemento contenuto in **<node>** con la funzione di elencare solamente i nomi delle interfacce incluse nel nodo
 * **<edge>**: conteneva attributi per identificare gli endpoint di tipo <node> e gli endpoint di tipo <iface>   
 
-Nella nuova versione è stato introdotto il tipo <subgraph> che identifica il cosiddetto `cluster`
-ossia il contenitore aperto. In questa versione è rilevante l'innestamento degli elementi XML 
+Nella nuova versione è stato introdotto il tipo <subgraph> che altro non è che la serializzazione 
+di un'istanza di `OpenContainer`. In questa versione è rilevante l'innestamento degli elementi XML 
 che stabiliscono in quale contenitore aperto si trovano gli oggetti rappresentati. Ciò è fondamentale
 sotto 2 aspetti:
 
@@ -113,7 +160,11 @@ sotto 2 aspetti:
   Attualmente l'implementazione espande il contenitore aperto dell'elemento se esso viene spostato oltre il limite
   del lato destro e del lato inferiore dello stesso.
 
+In figura :fig:`TODOTODOTODO` un esempio dell'XML prodotto dalla nuova implementazione.
 
+
+Una nota importante sulle interfacce di rete: è l'istanza `ClosedNode` che serializza le interfacce 
+contenute nel nodo. Come vedremo le interfacce sono fondamentali per superare in modo apparente il limite del grafo semplice: purtroppo spesso non sono visualizzate e rendono più corposo lo XML prodotto. 
 
 
 Lato Flex
@@ -121,7 +172,7 @@ Lato Flex
 
 
 Quando si è andati ad intervenire sulla parte Flex,
-si è cercato di evitare qualunque modifica alla libreria originale,
+si è cercato di evitare qualunque modifica alla libreria SpringGraph originale,
 per poter installare gli aggiornamenti (di minor version) e i bugfix in modo trasparente.
 
 Ciò non è stato possibile a causa di alcune modifiche necessarie ad implementare i meccanismi 
