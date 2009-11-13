@@ -166,25 +166,58 @@ In figura :fig:`TODOTODOTODO` un esempio dell'XML prodotto dalla nuova implement
 Una nota importante sulle interfacce di rete: è l'istanza `ClosedNode` che serializza le interfacce 
 contenute nel nodo. Come vedremo le interfacce sono fondamentali per superare in modo apparente il limite del grafo semplice: purtroppo spesso non sono visualizzate e rendono più corposo lo XML prodotto. 
 
-
 Lato Flex
 &&&&&&&&&
 
-
 Quando si è andati ad intervenire sulla parte Flex,
-si è cercato di evitare qualunque modifica alla libreria SpringGraph originale,
+abbiamo cercato di evitare qualunque modifica alla libreria SpringGraph originale,
 per poter installare gli aggiornamenti (di minor version) e i bugfix in modo trasparente.
 
 Ciò non è stato possibile a causa di alcune modifiche necessarie ad implementare i meccanismi 
 in oggetti derivati, quindi sono state effettuate alcune variazioni alle `signature` delle funzioni
 e degli attributi che in alcuni casi sono passati ad esempio da `private` a `protected`. 
 Queste personalizzazioni sono state segnalate all'autore che in un primo momento aveva risposto
-dicendo che ovviamnete non c'era alcun problema, ma che lui aveva risolto in precedenza in altri modi
+dicendo che non era contrario alle modifiche, ma lui aveva risolto in precedenza in altri modi
 e avrebbe comunque verificato la nostra patch. Da quel momento in poi non si è più ricevuta alcuna risposta.
 
+Molti sforzi sono stati dedicati all'implementazione delle mappe lato Flex.
+Flex è un framework molto potente, ma molto complesso.
 
+Di seguito spieghiamo la logica che risiede dietro i file più significativi:
 
+* `SANETMap.mxml`: questo il file applicazione. Il main.
+  Contiene l'interfaccia grafica applicativa con i controller grafici e le funzioni (astratte) che servono a recuperare i valori desiderati (valori di stato, spanning tree, carico di rete). In questa nuova versione
+  sono stati introdotti 3 slider per: zoom, curvatura degli archi e trasparenza dello sfondo dei contenitori aperti.
+  È presente un check selezionabile per la visualizzazione delle interfacce di rete e dei loro nomi. 
+  Infine un bottone per il salvataggio permanente delle posizioni dei nodi.
+* `MapInfoProxy.as`:
+* `NetGraph.as`: struttura del grafo di cui poi VisualNetGraph.as conterrà la rappresentazione. Include il un metodo statico per costruire il grafo dai dati XML ricevuti. 
+* `VisualNetGraph.as`: rappresentazione grafica della mappa. Qui vengono innestati i contenitori aperti (a partire dal contenitore radice virtuale) e le risorse in essi incluse. Inoltre vengono ospitati gli archi che devono poter connettere risorse presenti anche in container aperti differenti e disattivato l'algoritmo automatico di posizionamento.
+* `SANETEdge.as`: rappresentazione degli archi. Qui si gestisce la direzione e il gradiente. 2 trucchi sono stati usati per superare le limitazioni del grafo semplice: il primo riguarda la direzione e il secondo i link multipli. La direzione viene passata nell'elemento XML <edge> e viene ricalcolata proprio in questo file. Invece l'intuizione che sta dietro al superamento dei link multipli fra due vertici, consiste nella consapevolezza che le interfacce di rete odierne se connesse, interconnettono sempre e solo 2 endopoint. In questo caso va benissimo il grafo semplice. Quindi nelle nuove mappe l'arco non è più costruito fra 2 nodi o 2 container chiusi, ma fra le interfacce che essi stessi contengono siano esse visibili o invisibili.
+* `NestedItem.as`: implementa la logica dell'innestamento degli elementi XML spiegata sopra.
+* `SANETViewFactory.as`: in fase di rendering, istanzia l'oggetto `Visual*` specifico relativamente ai dati XML di un elemento di `NetGraph.as` dato in input
+* `VisualBaseNetGraphElement.mxml`: classe base per gli elementi della mappa. Definisce il canvas e gli handler per gli eventi nell'interazione con l'utente (mouseover, mouseout, doubleClick, ...) 
+* `VisualCloseContainer.as`: rappresentazione di contenitore chiuso. È usato anche per la rappresentazione dei nodi chiusi. Dal punto di vista dell'interfaccia sono icone che hanno un'etichetta, un url, stessi handler per la gestione di eventi e conoscenza delle interfacce di rete incluse (`VisualIface.as`)
+* `VisualOpenContainer.as`: rappresentazione di container aperto. Un riquadro con posizionamento diverso dell'etichetta, bordi colorati con il proprio stato (derivante dalle risorse incluse nello stesso) e conoscenza degli oggetti in esso contenute (`VisualOpenContainer.as`, `VisualCloseContainer.as`)
+* `VisualIface.as`: rappresentazione grafica delle interfacce di rete. Esse sono cerchi posizionati al centro del proprio `VisualCloseContainer.as`. Di esse non è possibile salvare le posizioni. È molto interessante poter visualizzare lo stato di una singola interfaccia di rete.
 
-Pydot, Clustering etc. etc.
+Purtroppo al momento della scrittura di questo documento manca l'implementazione lato server del recupero dei valori quali carico di rete e stato dello spanning tree e quindi, sebbene l'implementazione lato client sia praticamente pronta, tali parametri non possono essere rappresentati nella versione 0.4 di SANET.
+
+`SANETMap.swf` è il file compilato dell'applicazione Flash, occupa circa 400KB
+ ed è l'unico che viene scaricato dal browser (e messo in cache) 
+per la visualizzazione delle mappe in SANET.
+
+Un'ultima nota su come ancora una volta il software libero ci è stato di aiuto 
+e in particolare il modulo di terze parti Flex Thunderbolt
+che consente di effettuare il log dei messaggi nell'estensione FireBug di Firefox 
+(estensione fondamentale per ogni sviluppatore web).
+
  
+Interazione fra Javascript e Flex
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
+A corredare il tutto non poteva mancare un modulo per interagire con le mappe direttamente da Javascript
+e viceversa. Questo è il modulo Flex Ajax Bridge provvisto da Adobe stessa (file `bridge/FABridge.as`) ed è 
+stato fondamentale per dare coerenza nel tooltip informativo delle risorse e nel menu contestuale.
+
+TODO: immagine mappe nuove
