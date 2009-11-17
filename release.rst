@@ -146,20 +146,71 @@ Cosa c'è nella cattedrale ?
 Andando verso il bazaar...
 --------------------------
 
-Rilasciata documentazione completa in inglese
-Spostata tutta la storia di SVN su sourceforge
-con problemi di ... oscuramento password vecchie,
-applicazione licenza retroattiva
-SANET esce già nella sua versione 2.0 .... downgrade a 0.2
+Alla ConfSL09 il rilascio è stato annunciato come `Open Source Prerelease`
+a causa della mancanza di un'adeguata documentazione e dell'esternazione 
+del repository Subversion per lo sviluppo.
 
+Quindi ci si è subito concentrati a colmare queste lacune e quindi:
+
+* la documentazione è stata completata e tradotta in inglese
+* abbiamo trasferito su Sourceforge tutto il repository Subversion con la storia dello sviluppo,
+  rimediando ad alcuni `errori di giovinezza`: abbiamo eliminato alcune password che erano state 
+  inserite in passato e la licenza è stata applicata in modo retroattivo
+* abbiamo riportato nel TRAC di Sourceforge i bug applicativi
+
+Fatto il nuovo tarball con i primi bugfix, ci siamo anche confrontati internamente
+sullo stato del software: quello che noi internamente consideravamo versione 2.x
+non poteva essere considerato alla stessa stregua dalla comunità del software libero.
+
+Perciò abbiamo deciso di effettuare il downgrade di versione dalla 2.3 alla 0.2.3:
+SANET è funzionante, ma è ancora in evoluzione e soprattutto non ha ancora la `confezione`
+necessaria per essere almeno 1.0 .
 
 Il secondo rilascio al termine del Master FOSSET0809
 ----------------------------------------------------
 
-TODO ?Di cosa abbiamo bisogno....?!?
+Siamo a inizio novembre e SANET è andato molto avanti rispetto al rilascio.
+C'è stato tutto il lavoro sulle mappe, ma non solo. Il poller integra molti più controlli,
+ed è stato realizzato un modulo per la reportistica.
 
-La versione SVN troppo avanti rispetto al rilascio
-Congelare la release e fare il tarball
-Creare setup.py per l'installazione
-Estrapolare Django.
+In questo periodo la crescita della comunità non è stata fra le priorità LABS
+che ha preferito spingere sulle nuove funzionalità.
+
+A cinque mesi dal rilascio si contano:
+
+* 120 download dell'applicazione e 56 dell'articolo realizzato per la ConfSL09
+* un canale IRC frequentato solo da sistemisti LABS
+* un repository Subversion che è molto più avanti del tarball
+
+Cogliamo l'occasione col dire che io, lo sviluppatore principale del progetto,
+ho interrotto il rapporto di lavoro dipendente con i LABS il 30 settembre.
+Questo aspetto è molto importante e darà adito ad alcune riflessioni che però lascio alla sezione 
+:ref:`TODO future`.
+
+Di cosa ha bisogno SANET ora ?
+
+Ho pensato di curare il rilascio di questa nuova versione, la 0.3.9.
+
+I cambiamenti sono stati molti e ci avviciniamo alla 0.4.
+È giunto il momento di realizzare la procedura di installazione che si occupi
+di verificare se tutte le dipendenze del sistema sono soddisfatte.
+
+È abbastanza frequente che si verifichino errori a causa di vecchie librerie,
+o mancanza di alcuni prerequisiti.
+
+L'evoluzione naturale del rilascio del software sarebbe di ampliare il bacino
+di utenza e ampliare i canali di comunicazione con la comunità. Per fare questo
+è innanzi tutto importante pacchettizzare il software per una distribuzione.
+Un'altra idea sarebbe di aprire un blog specializzato. 
+
+TODO VERIFICARE: Al momento si ritiene di lasciare la decisione di questi ultimi due passi a LABS
+che detiene il diritto di paternità del software e quindi l'interesse nella diffusione
+dell'implementazione.
+
+In questa fase abbiamo quindi congelato lo sviluppo e creato il file standard `setup.py` 
+per la distribuzione di applicativi python. Lo script verifica le dipendenze
+e installa il software.
+
+Il senso di creare la 0.3.9 è quello di avere margine per alcune modifiche grafiche
+nell'integrazione nell'interfaccia del modulo dei report che necessita di alcune migliorie.
 
