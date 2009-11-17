@@ -1,4 +1,0 @@
-
-Appendix A - Security
-=====================
-

@@ -1,5 +1,5 @@
-Osservazioni su NMS open source nella lista cisco-nsp
-=====================================================
+Appendice A - Osservazioni su NMS open source in lista cisco-nsp
+================================================================
 
 La mailing-list **cisco-nsp** è una lista di discussione per persone che usano
 apparati Cisco in Network Service Provider.

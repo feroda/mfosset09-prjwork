@@ -1,5 +1,5 @@
-SVG o FLASH ?
-=============
+Appendice C - SVG o FLASH ?
+===========================
 
 A favore di SVG:
 

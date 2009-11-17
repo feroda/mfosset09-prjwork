@@ -57,27 +57,100 @@ Riassumiamo le scelte fondamentali che LABS ha preso per essere pronta al rilasc
 Il primo rilascio alla ConfSL09
 -------------------------------
 
-Il 12 giugno 2009 è il primo rilascio di SANET.
-SANET esce già nella sua versione 2.0 
+**Sabato 13 giugno 2009 è il primo rilascio ufficiale di SANET**.
 
- 
+Momento storico per i LABS e in particolare per me che per qualche anno
+avevo sviluppato software libero con il sogno, o l'ambizione di raggiungere questo obiettivo.
+
+Cosa viene fatto per il rilascio di questa prima versione ?
+
+Il minimo indispensabile:
+
+* viene inserito un file LICENSE con la licenza AGPLv3
+* viene creato un tarball dell'ultima versione stabile
+* viene rilasciato il pdf dell'articolo per la CONFSL09 come guida base per l'utente
+* viene creata la home page del progetto: http://sanet.sourceforge.net
+* viene attivato e impostato l'ambiente TRAC con le prossime milestone
+* viene creato e registrato il canale irc #sanet nella rete freenode
+
+La strada è tracciata. SANET è su Sourceforge.net. 
+
+Ora inizia un percorso: dalla cattedrale si va verso il bazaar.
+Riportiamo a questo proposito la figura `TODO figure` riferita allo studio 
+`From the Cathedral to the Bazaar: An Empirical Study of the Lifecycle of Volunteer Community Projects` 
+di `Andrea Capiluppi e Martin Michlmayr`. 
+
 TODO: immagine dalla cattedrale al bazaar
 
-From the Cathedral to the Bazaar: An
-Empirical Study of the Lifecycle of Volunteer
-           Community Projects
-        Andrea Capiluppi, and Martin Michlmayr
+Nello studio i due autori trattano come ogni progetto disseminato nel bazaar parta da una prima fase
+caratterizzata dall'approccio a cattedrale.
 
-Impostato ambiente TRAC
-Creato canale irc #sanet su freenode
+Cosa c'è nella cattedrale ?
 
-Documentazione e altro
-----------------------
+* Rappresentazione della rete
+* * Nodi
+* * Interfacce
+* * Controlli
+* * * Target
+* * * Misure
+* * Sito
+* * Contenitori
+* Poller (agente di controllo)
+* * Legge la configurazione
+* * Esegue i controlli
+* * Agisce al verificarsi di determinate condizioni
+* Logica dei controlli
+* * Target UP
+* * Target DOWN
+* * Target FAILING
+* * Target UNCHECKABLE
+* * Target INACTIVE (trasparente)
+* * 2 limiti:
+* * * Valore
+* * * Tolleranza temporale
+* Libreria dei controlli
+* * Nodo
+* * * Raggiungibilità (MTU configurabile)
+* * * Occupazione CPU, FS, RAM, VMEM
+* * * Reboot
+* * * Presenza di un processo
+* * * Raggiungiblità TCP
+* * * Sincronizzazione con server NTP
+* * * Adiacenza BGP, OSPF
+* * * Match di un URL con una espressione regolare
+* * * WMI
+* * Interfaccia (supporta variazione di ifIndex)
+* * * Stato
+* * * Numero di errori
+* * * Pacchetti non unicast ricevuti
+* * * Full duplex
+* * * Traffico (supporta contatori a 32 e 64 bit)
+* * * STP
+* * * Variazione di stato
+* * * Variazione costo root bridge
+* * * Variazione porta root bridge
+* CLI per la configurazione
+* * Creazione e gestione di categorie di nodi, interfacce, controlli
+* * Creazione e gestione di nodi, interfacce e controlli
+* * Creazione e gestione di alberi e contenitori
+* * Quando controllare
+* * Quando e a chi mandare la segnalazione
+* * Sospendere il controllo di un nodo
+* * Snmpwalk integrato
+* Interfaccia web
+* * Visualizzazione dello stato e delle misure
+* * Feed RSS
+* * Mappe
+
+
+Andando verso il bazaar...
+--------------------------
 
 Rilasciata documentazione completa in inglese
 Spostata tutta la storia di SVN su sourceforge
 con problemi di ... oscuramento password vecchie,
 applicazione licenza retroattiva
+SANET esce già nella sua versione 2.0 .... downgrade a 0.2
 
 
 Il secondo rilascio al termine del Master FOSSET0809
