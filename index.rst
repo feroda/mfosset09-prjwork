@@ -17,7 +17,6 @@ Contents:
    development
    networkmaps
    release
-   stateofart
    retrospectiveandfuture
    appendix/security
    appendix/oss-nms
