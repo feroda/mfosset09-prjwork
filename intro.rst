@@ -18,8 +18,8 @@ sono descritte nella documentazione online. Una panoramica del software con le s
 è riportata in appendice nell'articolo di presentazione scritto per la CONFSL09.
 
 In particolare relativamente al rilascio della seconda versione
-viene mostrato il lavoro svolto nella rappresentazione della mappe topologiche della rete
-e il processo di pacchettizzazione avviato per facilitare l'installazione del software ad utenti meno
+viene mostrato il lavoro svolto nella **rappresentazione della mappe topologiche della rete**
+e il **processo di pacchettizzazione** avviato per facilitare l'installazione del software ad utenti meno
 esperti di sistemi.
 
 Il tutto è concluso da una verifica del lavoro svolto e possibili future direzioni,

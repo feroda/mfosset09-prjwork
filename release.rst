@@ -42,16 +42,15 @@ Riassumiamo le scelte fondamentali che LABS ha preso per essere pronta al rilasc
   che necessitano di esperti sistemisti di rete... e la professionalità non si fa 
   con qualche riga di codice in più
 * **Quale licenza applicare**: dato che SANET è un'applicazione web, abbiamo optato per la AGPLv3.
-  In questo modo avremmo evitato il `problema Google`: un'azienda potente che inglobasse SANET fornendo
+  L'intenzione è di evitare il `problema Google`: un'azienda potente che inglobi SANET fornendo
   un servizio di rete basato su di esso, ma senza essere obbligata a restituire il codice alla comunità
   e tantomeno a noi
 * **Dove sviluppare il codice** o meglio dove gestire lo sviluppo del codice e la comunità degli utenti: 
-  la risposta è stata Sourceforge.net . Il portale di sviluppo software open source per definizione.
-  Sourceforge.net offre il sistema di versionamento SVN e la recente possibilità di installare applicazioni esterne quali TRAC, MediaWiki o Wordpress, ci hanno convinto che sarebbe stata una scelta appropriata.
-  Infatti, in particolare grazie a TRAC, avremmo potuto prosegure senza traumi con il modo di lavorare
-  e il dialogo con i sistemisti LABS
+  la risposta è stata `Sourceforge.net <http://sanet.sourceforge.net>`__. Il portale di sviluppo software open source per definizione.
+  Sourceforge.net offre il sistema di versionamento Subversion (e ora anche GIT) e la recente possibilità di installare applicazioni esterne quali TRAC, MediaWiki o Wordpress, ci hanno convinto che sarebbe stata una scelta appropriata.
+  Infatti, in particolare grazie a TRAC, abbiamo potuto portare avanti il progetto senza cambiare il nostro modo di lavorare
 * **Quando uscire con la prima release**: una decisione non banale. Abbiamo deciso di uscire non appena
-  ci fossimo liberati totalmente del vecchio `pinger`. In aiuto ci è venuta anche l'occasione della ConfSL09: un motivo in più per accellerare i lavori e rilasciare entro il 12 giugno 2009. 
+  ci fossimo liberati totalmente del vecchio `pinger`. In aiuto ci è venuta anche l'occasione della ConfSL09: un motivo in più per accellerare i lavori e rilasciare entro il 13 giugno 2009. 
 
 
 Il primo rilascio alla ConfSL09
@@ -68,7 +67,7 @@ Il minimo indispensabile:
 
 * viene inserito un file LICENSE con la licenza AGPLv3
 * viene creato un tarball dell'ultima versione stabile
-* viene rilasciato il pdf dell'articolo per la CONFSL09 come guida base per l'utente
+* viene rilasciato il pdf dell'articolo per la CONFSL09 come guida base per l'utente TODO ripportato in appendice ?
 * viene creata la home page del progetto: http://sanet.sourceforge.net
 * viene attivato e impostato l'ambiente TRAC con le prossime milestone
 * viene creato e registrato il canale irc #sanet nella rete freenode
@@ -82,65 +81,82 @@ di `Andrea Capiluppi e Martin Michlmayr`.
 
 TODO: immagine dalla cattedrale al bazaar
 
-Nello studio i due autori trattano come ogni progetto disseminato nel bazaar parta da una prima fase
+Nello studio i due autori spiegano come ogni progetto disseminato nel bazaar parta da una prima fase
 caratterizzata dall'approccio a cattedrale.
 
 Cosa c'è nella cattedrale ?
 
 * Rappresentazione della rete
-* * Nodi
-* * Interfacce
-* * Controlli
-* * * Target
-* * * Misure
-* * Sito
-* * Contenitori
+
+  * Nodi
+  * Interfacce
+  * Controlli
+
+    * Target
+    * Misure
+
+  * Sito
+  * Contenitori
+
 * Poller (agente di controllo)
-* * Legge la configurazione
-* * Esegue i controlli
-* * Agisce al verificarsi di determinate condizioni
-* Logica dei controlli
-* * Target UP
-* * Target DOWN
-* * Target FAILING
-* * Target UNCHECKABLE
-* * Target INACTIVE (trasparente)
-* * 2 limiti:
-* * * Valore
-* * * Tolleranza temporale
+
+  * Legge la configurazione
+  * Esegue i controlli
+  * Agisce al verificarsi di determinate condizioni
+
+* Logica dei controlli 
+
+  * Target UP
+  * Target DOWN
+  * Target FAILING
+  * Target UNCHECKABLE
+  * Target INACTIVE (trasparente)
+  * 2 limiti:
+
+    * Valore
+    * Tolleranza temporale
+
 * Libreria dei controlli
-* * Nodo
-* * * Raggiungibilità (MTU configurabile)
-* * * Occupazione CPU, FS, RAM, VMEM
-* * * Reboot
-* * * Presenza di un processo
-* * * Raggiungiblità TCP
-* * * Sincronizzazione con server NTP
-* * * Adiacenza BGP, OSPF
-* * * Match di un URL con una espressione regolare
-* * * WMI
-* * Interfaccia (supporta variazione di ifIndex)
-* * * Stato
-* * * Numero di errori
-* * * Pacchetti non unicast ricevuti
-* * * Full duplex
-* * * Traffico (supporta contatori a 32 e 64 bit)
-* * * STP
-* * * Variazione di stato
-* * * Variazione costo root bridge
-* * * Variazione porta root bridge
+
+  * Nodo
+
+    * Raggiungibilità (MTU configurabile)
+    * Occupazione CPU, FS, RAM, VMEM
+    * Reboot
+    * Presenza di un processo
+    * Raggiungiblità TCP
+    * Sincronizzazione con server NTP
+    * Adiacenza BGP, OSPF
+    * Match di un URL con una espressione regolare
+    * WMI
+
+  * Interfaccia (supporta variazione di ifIndex)
+
+    * Stato
+    * Numero di errori
+    * Pacchetti non unicast ricevuti
+    * Full duplex
+    * Traffico (supporta contatori a 32 e 64 bit)
+    * STP
+    * Variazione di stato
+    * Variazione costo root bridge
+    * Variazione porta root bridge
+
 * CLI per la configurazione
-* * Creazione e gestione di categorie di nodi, interfacce, controlli
-* * Creazione e gestione di nodi, interfacce e controlli
-* * Creazione e gestione di alberi e contenitori
-* * Quando controllare
-* * Quando e a chi mandare la segnalazione
-* * Sospendere il controllo di un nodo
-* * Snmpwalk integrato
+
+  * Creazione e gestione di categorie di nodi, interfacce, controlli
+  * Creazione e gestione di nodi, interfacce e controlli
+  * Creazione e gestione di alberi e contenitori
+  * Quando controllare
+  * Quando e a chi mandare la segnalazione
+  * Sospendere il controllo di un nodo
+  * Snmpwalk integrato
+
 * Interfaccia web
-* * Visualizzazione dello stato e delle misure
-* * Feed RSS
-* * Mappe
+
+  * Visualizzazione dello stato e delle misure
+  * Feed RSS
+  * Mappe
 
 
 Andando verso il bazaar...
@@ -150,7 +166,7 @@ Alla ConfSL09 il rilascio è stato annunciato come `Open Source Prerelease`
 a causa della mancanza di un'adeguata documentazione e dell'esternazione 
 del repository Subversion per lo sviluppo.
 
-Quindi ci si è subito concentrati a colmare queste lacune e quindi:
+Ci siamo subito concentrati nel colmare queste lacune e quindi:
 
 * la documentazione è stata completata e tradotta in inglese
 * abbiamo trasferito su Sourceforge tutto il repository Subversion con la storia dello sviluppo,
@@ -158,19 +174,19 @@ Quindi ci si è subito concentrati a colmare queste lacune e quindi:
   inserite in passato e la licenza è stata applicata in modo retroattivo
 * abbiamo riportato nel TRAC di Sourceforge i bug applicativi
 
-Fatto il nuovo tarball con i primi bugfix, ci siamo anche confrontati internamente
-sullo stato del software: quello che noi internamente consideravamo versione 2.x
+Fatto il nuovo `tarball` con i primi `bugfix`, ci siamo anche confrontati internamente
+sullo stato del software: quello che noi consideravamo versione 2.x
 non poteva essere considerato alla stessa stregua dalla comunità del software libero.
 
-Perciò abbiamo deciso di effettuare il downgrade di versione dalla 2.3 alla 0.2.3:
+Perciò abbiamo deciso di effettuare il `downgrade` di versione dalla 2.3 alla 0.2.3:
 SANET è funzionante, ma è ancora in evoluzione e soprattutto non ha ancora la `confezione`
-necessaria per essere almeno 1.0 .
+necessaria per essere almeno 1.0.
 
 Il secondo rilascio al termine del Master FOSSET0809
 ----------------------------------------------------
 
-Siamo a inizio novembre e SANET è andato molto avanti rispetto al rilascio.
-C'è stato tutto il lavoro sulle mappe, ma non solo. Il poller integra molti più controlli,
+Siamo a inizio novembre e SANET è andato molto avanti rispetto al rilascio di giugno.
+C'è stato tutto il lavoro sulle mappe (fino ad agosto), ma non solo. Il `poller` integra molti più controlli,
 ed è stato realizzato un modulo per la reportistica.
 
 In questo periodo la crescita della comunità non è stata fra le priorità LABS
@@ -182,10 +198,10 @@ A cinque mesi dal rilascio si contano:
 * un canale IRC frequentato solo da sistemisti LABS
 * un repository Subversion che è molto più avanti del tarball
 
-Cogliamo l'occasione col dire che io, lo sviluppatore principale del progetto,
+Colgo l'occasione col dire che io, lo sviluppatore principale del progetto,
 ho interrotto il rapporto di lavoro dipendente con i LABS il 30 settembre.
 Questo aspetto è molto importante e darà adito ad alcune riflessioni che però lascio alla sezione 
-:ref:`TODO future`.
+:ref:`retrospective-and-future`.
 
 Di cosa ha bisogno SANET ora ?
 
@@ -203,14 +219,27 @@ di utenza e ampliare i canali di comunicazione con la comunità. Per fare questo
 è innanzi tutto importante pacchettizzare il software per una distribuzione.
 Un'altra idea sarebbe di aprire un blog specializzato. 
 
-TODO VERIFICARE: Al momento si ritiene di lasciare la decisione di questi ultimi due passi a LABS
+Al momento, considerata l'evoluzione dei rapporti, non si è pensato di
+proseguire riguardo a questi ultimi due passi. Si intende discuterne con LABS 
 che detiene il diritto di paternità del software e quindi l'interesse nella diffusione
 dell'implementazione.
 
-In questa fase abbiamo quindi congelato lo sviluppo e creato il file standard `setup.py` 
+In questa fase abbiamo quindi congelato lo sviluppo e creato il file standard `setup.py <http://docs.python.org/distutils/setupscript.html>`__
 per la distribuzione di applicativi python. Lo script verifica le dipendenze
-e installa il software.
+e installa il software. Inoltre è stato adottato `pip <http://pip.openplans.org/>`__ per la generazione 
+dell'elenco di librerie python richieste con le rispettive versioni.
+Per quello che riguarda la verifica delle dipendenze fra applicativi i manutentori di moduli python
+suggeriscono di occuparsene usando i gestori pacchetti delle distribuzioni specifiche.
 
-Il senso di creare la 0.3.9 è quello di avere margine per alcune modifiche grafiche
-nell'integrazione nell'interfaccia del modulo dei report che necessita di alcune migliorie.
+Abbiamo cercato di andare oltre, per verificare le dipendenze rispetto ad applicativi
+esterni. Sicuramente lo strumento per eccellenza a questo fine sono gli `autotools`, ma 
+l'idea è giunta tardi e, alla data di stesura di questo documento, non c'è stato modo di provarli.
+È stato invece realizzato lo script ad-hoc `install_requirements.sh` che verifica la presenza di corrette librerie
+NET-SNMP e PostgreSQL che sono elementi cruciali del sistema.
+La sua esecuzione è stata integrata nel `setup.py` per mantenere comunque la procedura standard 
+di installazione pacchetti python.
+Ripeto che il prossimo passo sarà ripassare gli `autotools` e provare con quelli.
+
+Il senso di creare la 0.3.9 (alpha 1) è quello di avere margine per alcune modifiche grafiche
+nell'integrazione nell'interfaccia del modulo dei report che necessita di alcune migliorie prima della 0.4.
 

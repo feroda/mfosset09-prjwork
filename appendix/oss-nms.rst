@@ -4,9 +4,9 @@ Appendice A - Osservazioni su NMS open source in lista cisco-nsp
 La mailing-list **cisco-nsp** è una lista di discussione per persone che usano
 apparati Cisco in Network Service Provider.
 
-Si riporta qui di seguito un messaggio che include, nella parte quotata, alcune osservazioni 
-sui sistemi di monitoraggio Open Source e la risposta dell'Ing. Michele Bergonzoni che 
-è sistemista senior di reti di telecomunicazioni (nda: direi più un `network god`), nonché
+Riportiamo qui di seguito un messaggio che include, nella parte quotata, alcune osservazioni 
+sui sistemi di monitoraggio Open Source e la risposta dell'Ing. Michele Bergonzoni,  
+sistemista senior in reti di telecomunicazioni (nda: direi più un `network god`), nonché
 autore unico di `pinger` e coautore di `SANET`.
 
 Il messaggio assume un significato di particolare importanza in quanto riesce a cogliere 
@@ -15,8 +15,6 @@ per il monitoraggio delle reti.
 
 Inizia qui il messaggio reperibile all'indirizzo 
 `[c-nsp] Free NMS Tools <https://puck.nether.net/pipermail/cisco-nsp/2009-July/062347.html>`__.
-
-.. sourcecode: TODO preformattato ?
 
     Michele Bergonzoni bergonz at labs.it
     Fri Jul 17 09:26:28 EDT 2009

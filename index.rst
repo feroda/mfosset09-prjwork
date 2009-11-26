@@ -21,6 +21,7 @@ Contents:
    appendix/oss-nms
    appendix/security
    appendix/SVG_or_FLASH
+   appendix/map-xml
 
 Indices and tables
 ==================

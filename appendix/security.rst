@@ -20,16 +20,16 @@ Quindi gli attacchi esterni possono provenire da:
 
 Mentre gli attacchi interni da:
 
-* code injection in comandi impartiti nella CLI locale
-* sql injection nel database locale
+* `code injection` in comandi impartiti nella CLI locale
+* `sql injection` nel database locale
 
-oltre ai più classici Denial Of Service per l'esterno e bug di libreria di cui segnaleremo solo un caso critico.
+oltre ai più classici `Denial Of Service` per l'esterno e `bug` di libreria di cui segnaleremo solo un caso critico.
 
 Attacchi esterni
 ----------------
 
-Iniziamo col dire che SANET soffre ancora di problemi di performance. È un sistema CPU-bound 
-(oltre che Network-bound per quello che riguarda il monitoraggio delle condizioni di rete), per cui non è difficile realizzare un attacco
+Iniziamo col dire che SANET soffre ancora di problemi di performance. È un sistema `CPU-bound` 
+(oltre che `Network-bound` per quello che riguarda il monitoraggio delle condizioni di rete), per cui non è difficile realizzare un attacco
 Denial Of Service e fare in modo che altri utenti non possano accedere al sistema di monitoraggio e visualizzare 
 lo stato della rete. 
 
@@ -38,8 +38,8 @@ Tolto il problema del Denial Of Service bisogna considerare il tipo di operazion
 * richiesta generica di un url
 * salvataggio note e posizioni degli elementi nella mappa: queste operazioni scrivono dati nello RDBMS
 
-La richiesta generica di un url potrebbe essere dare problemi in caso di pacchetto HTTP malformato,
-oppure di corpo della richiesta forgiato ad hoc per operazioni di code injection.
+La richiesta generica di un url potrebbe dare problemi in caso di pacchetto HTTP malformato,
+oppure di corpo della richiesta forgiato ad-hoc per operazioni di code injection.
 
 SANET è basato su Django che nelle installazioni in produzione è gestito tramite l'handler `mod_python` di Apache.
 Quindi per quello che riguarda i livelli ISO/OSI fino al livello HTTP , la sicurezza è garantita dall'implementazione 
@@ -49,7 +49,7 @@ Il contenuto del pacchetto HTTP invece viene trasmesso a livello applicativo anc
 
 * del web server non occorre dire altro
 * Django dispone di un ottimo sistema di quoting e sanitizzazione dell'input grazie alla libreria cgi di Python
-* inoltre i parametri valorizzati compilando i form nella canonica interfaccia web, vengono serializzati tramite la libreria Javascript Prototype che ne garantisce il corretto quoting nell'url della richiesta in caso di una GET o nell'url e nel payload in caso di una POST. Certo, questa è una considerazione esclusivamente marginale se si pensa che in un attacco informatico di solito l'input non viene fornito tramite l'interfaccia web applicativa
+* inoltre i parametri valorizzati compilando i `form` nella canonica interfaccia web, vengono serializzati tramite la libreria `Javascript Prototype` che ne garantisce il corretto quoting nell'url della richiesta in caso di una `GET`, o nell'url e nel `payload` in caso di una `POST` (operazioni HTTP più comuni). Certo, questa è una considerazione esclusivamente marginale se si pensa che in un attacco informatico di solito l'input non viene fornito tramite l'interfaccia web applicativa.
 
 Rimane la possibilità di iniezione di codice attraverso risposte malformate alle richieste di monitoraggio di `poller`.
 In questo caso le richieste SNMP sono state incapsulate e attualmente si appoggiano ai binding python di NetSNMP.
@@ -59,7 +59,8 @@ per siti molto grandi, dove incide molto la latenza della rete nell'effettuazion
 
 Dopo una indagine approfondita del problema non se ne è riuscita ad individuarne la causa, e il problema (che io sappia) 
 non è stato sottoposto alla comunità di sviluppo per mancanza di informazioni sulla riproducibilità e la particolarità delle
-reti in cui questo problema si verifica.
+reti in cui questo problema si verifica. È stato comunque realizzato un `kludge` con un processo padre che ha il solo compito
+di supervisionare l'esistenza del figlio che effettua i controlli di rete e riavviarlo in caso non esista più.
 
 Gli altri controlli di rete sono implementati da funzioni apposite e il parsing dei risultati effettuato di volta in volta
 a seconda del tipo di controllo configurato. In genere il valore di ritorno viene considerato come stringa o come uno specifico
@@ -67,6 +68,8 @@ tipo di dato dipendentemente dall'operatore definito nel controllo e relativamen
 In ogni caso mai valutato. 
 
 Il sistema non riceve trap SNMP dagli apparati.
+
+Non si può chiudere questa sezione sugli attacchi esterni senza porre in evidenza che il processo `poller` effettua continue richieste al DNS.
 
 
 Attacchi interni
@@ -97,6 +100,11 @@ e quindi si può affermare che sono protette da iniezione di codice, però ci so
 che eseguono programmi esterni. È necessario verificare che le directory e i file che sono già presenti e pronti
 per essere eseguiti, non siano modificabili dall'utente non privilegiato, che altrimenti troverebbe una facile scorciatoia
 per eseguire codice arbitrario nel sistema.
+
+Infine è doveroso considerare che la macchina su cui viene eseguito il processo `poller` deve, per definizione, 
+raggiungere numerosi apparati di rete e server, più di quanto tipicamente possa fare un server qualsiasi nella rete del cliente:
+ciò rende più appetibile questa macchina come bersaglio per chi voglia usarla come testa di ponte per altri attacchi
+o attività di ingegneria sociale.
 
 Concludendo
 -----------

@@ -8,6 +8,8 @@ con il passato e farne un software manutenibile in cui sia chiara la separazione
 
 Si decide di partire con lo sviluppo di `SANET`.
 
+.. _first-attempt-failed:
+
 Un primo tentativo fallito
 --------------------------
 
