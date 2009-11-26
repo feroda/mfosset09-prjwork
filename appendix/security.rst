@@ -23,7 +23,6 @@ Mentre gli attacchi interni da:
 * code injection in comandi impartiti nella CLI locale
 * sql injection nel database locale
 
-
 oltre ai più classici Denial Of Service per l'esterno e bug di libreria di cui segnaleremo solo un caso critico.
 
 Attacchi esterni

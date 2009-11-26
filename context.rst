@@ -21,9 +21,9 @@ di avere tecnici specializzati per risolvere le più disparate problematiche che
 
 I problemi si possono verificare ad esempio a causa di:
 
-* deperimento dell'hardware
-* cause estemporanee (TODO: esempio ntp ?)
 * retaggi del passato
+* deperimento dell'hardware
+* cause estemporanee (ad esempio bachi in aggiornamenti software oppure gestione `ntp leap second <http://www.meinberg.de/english/info/leap-second.htm>`__ ?)
 * worm/attacchi nella rete
 
 Da cosa si parte
@@ -44,15 +44,15 @@ I difetti invece si possono riassumere in:
 
 * incomprensibilità dei risultati dell'attività di monitoraggio per il cliente
 * interfaccia grafica pressoché inesistente
-* caricamento in memoria di tutti i controlli da effettuare e riavvio del software in caso di modifica dei controlli
+* caricamento in memoria di tutti i controlli da effettuare e riavvio del software in caso di modifica della configurazione
 * mancanza di `escalation` ossia di dipendenza dei controlli e quindi flood di allarmi per un unico problema
 * limitazioni varie dovute alla ridotta espressività del linguaggio e del parsing dello stesso
 * multiprocesso, ma non multithread con conseguente sovraccarico di memoria
-* parsing dei controlli non resistente ad injection
+* parsing dei controlli non resistente a `code injection`
 
-È da notare che il tutto si basava su GNU/Linux e strumenti open source 
+È da notare che il tutto si è sempre basato su GNU/Linux e strumenti open source 
 e anche la realizzazione stessa rimaneva open: i clienti più smaliziati potevano 
-anche andare a curiosare nel codice e suggerire modifiche oltre ovviamente a definire i propri controlli.
+andare a curiosare nel codice e suggerire modifiche oltre ovviamente a definire i propri controlli.
 
 Tuttavia non si può dire che questa situazione fosse ben definita, dato che, di fatto `pinger` era da sempre 
 installato su appliance LABS e LABS stesso non ha mai esplicitato la licenza dello strumento in quanto
@@ -66,10 +66,10 @@ un punto di eccellenza per l'azienda.
 Ciò ovviamente era anche dovuto all'assenza di un settore di sviluppo software e quindi al modo `artigianale`
 in cui veniva sviluppato `pinger`. Per capire basta sapere che il versionamento del software avveniva tramite
 `diff` e `patch` ... che, a onor del vero, lo stesso Linus Torvalds ritiene un meccanismo ben più evoluto di CVS
-(si veda il video `Linus Torvalds on Git <http://www.youtube.com/>`__), ma che comunque rasenta la definizione di
+(si veda il video `Linus Torvalds on Git <http://www.youtube.com/watch?v=4XpnKHJAok8>`__), ma che comunque rasenta la definizione di
 versionamento.
 
-In ultimo è necessario osservare che LABS già aveva avviato una piccola divisione di sviluppo software
+In ultimo è necessario osservare che LABS stava avviando in quel periodo una piccola divisione di sviluppo software
 per portare avanti altri progetti.
 
 L'esigenza
@@ -92,8 +92,8 @@ si sarebbe potuto:
 * potenziare l'espressività e la tassonomia dei controlli da effettuare
 * adattarsi o integrare nuove tecnologie
 
-Non a caso la soddisfazione di nuove esigenze del cliente è stato elencato al primo posto:
-questa è la motivazione che spinge le aziende a investire e innovare.
+Non a caso la **soddisfazione** di nuove esigenze **del cliente*+ è stata elencata al primo posto:
+questa **è la motivazione che spinge le aziende a investire e innovare**.
 
 Anche nel caso dei LABS, sebbene le motivazioni fossero molteplici, il momento dell'investimento,
 il cosiddetto `trigger` è stata la richiesta sempre più insistente di un'interfaccia grafica
@@ -101,9 +101,10 @@ comprensibile: il cliente lamentava di non essere consapevole in alcun modo dell
 e che le informazioni estremamente dettagliate e tecniche fornite dalla scarna interfaccia di `pinger`
 non fossero per lui di alcuna utilità.
 
-Quindi la decisione è di aprire gli orizzonti, coinvolgere il gruppo di sviluppatori, 
+Quindi la decisione è stata di aprire gli orizzonti, coinvolgere il gruppo di sviluppatori, 
 e progettare un software per il monitoraggio delle reti che superasse i limiti di `pinger`
-(con priorità per i limiti di rappresentazione grafica dei risultati) e mantenesse il know-how dell'azienda.
+(con priorità per i limiti di rappresentazione grafica dei risultati),
+mantenesse il know-how pluriennale dell'azienda e anche il proprio `modus operandi`.
 
 Trattandosi questa volta di un software vero e proprio più che di un insieme di script
 si inizia a valutare la possibilità di rilasciare il lavoro alla comunità.
@@ -113,11 +114,10 @@ invece che il valore artificioso della licenza centellinata
 e pure si coglie marginalmente il vantaggio reciproco (per l'azienda a la comunità) che ne sarebbe potuto derivare.
 
 La strada del software libero non è già tracciata, ma inizia a diffondersi nell'aria.
-Continuando con contratti sul servizio di assistenza alle reti, tra l'altro, 
+Un merito che bisogna dare ai LABS è che continuando con contratti sul servizio di assistenza alle reti,
 non sarebbe sussistito alcun obbligo di rilascio del software: 
 infatti tale software non sarebbe stato ceduto al cliente, ma sarebbe rimasto
 uno strumento di proprietà dell'azienda per offrire il servizio concordato.
-
 Inoltre la presentazione dei risultati sarebbe avvenuta tramite interfaccia web
 e quindi anche in questo caso si sarebbe rimasti nel pieno della legittimità
 a meno di integrare software basato su licenza `Affero GPLv3 <http://www.fsf.org>`__ o
@@ -145,7 +145,7 @@ Questa scelta ha ovviamente avuto un impatto decisivo sull'impostazione dello sv
 che voleva a questo punto evolvere dalla precedente senza rompere con il passato per continuare appunto,
 a consolidare la strada già intrapresa.
 
-Si presentava lo scenario di rimpiazzare in corsa: non interrompere il servizio, ma rimpiazzare gradualmente parti
+Si presentava lo scenario di rimpiazzare l'auto in corsa: non interrompere il servizio, ma sostituire gradualmente parti
 di software migliorandone gradualmente la qualità complessiva.
 
 

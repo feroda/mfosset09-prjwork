@@ -18,9 +18,9 @@ Contents:
    networkmaps
    release
    retrospectiveandfuture
-   appendix/security
    appendix/oss-nms
-   appendix/SVG_or_FLASH.rst
+   appendix/security
+   appendix/SVG_or_FLASH
 
 Indices and tables
 ==================
