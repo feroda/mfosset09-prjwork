@@ -69,7 +69,10 @@ In ogni caso mai valutato.
 
 Il sistema non riceve trap SNMP dagli apparati.
 
-Non si può chiudere questa sezione sugli attacchi esterni senza porre in evidenza che il processo `poller` effettua continue richieste al DNS.
+Non si può chiudere la sezione sugli attacchi esterni senza porre in evidenza il rischio relativo alla compromissione del DNS
+cui `poller` dirige numerose richieste. Se infatti venisse compromesso il DNS interrogato, si potrebbero indirizzare a piacimento
+tutte queste richieste ad esempio ad un singolo host e generare un DoS. Questo considerato anche che in reti mediamente
+complesse il processo dispone di circa 40 thread che fanno richieste in parallelo.
 
 
 Attacchi interni
