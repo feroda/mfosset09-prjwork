@@ -70,7 +70,23 @@ Nella prima implementazione, quella del rilascio alla CONFSL09, ogni contenitore
 aveva associata un'unica mappa in cui venivano visualizzate le risorse direttamente incluse 
 e i collegamenti fra esse.
 
-Nelle figure :fig:`TODOTODOTODO` riportiamo alcuni esempi di mappe della prima implementazione.
+Nelle figure :ref:`map-generic` e :ref:`map-core` riportiamo alcuni esempi di mappe della prima implementazione.
+
+.. _map-generic:
+
+.. figure:: _static/mappa-generica-schermo-intero.png
+	:align: center
+
+	Mappa prima versione: collegamenti fra i contenitori (notare i blu)
+
+.. _map-core:
+
+.. figure:: _static/mappa-core.png
+	:align: center
+
+	Mappa prima versione: icone personalizzate
+
+
 
 Nella nuova versione abbiamo voluto introdurre le seguenti funzionalità:
 
@@ -78,7 +94,7 @@ Nella nuova versione abbiamo voluto introdurre le seguenti funzionalità:
 * rappresentare mappe dei contenitori adiacenti al contenitore selezionato
 * visualizzare le singole interfacce di rete e il loro stato
 * superare il limite del grafo semplice che non consentiva di visualizzare link multipli fra gli stessi due vertici
-  (in caso di apparati con collegamenti ridondati o di contenitori con più apparati interconnessi)
+  (in caso di apparati con collegamenti ridondati o di contenitori con più apparati interconnessi veniva mostrato un arco blu)
 * rappresentare differenti parametri: alternativamente alla rappresentazione dello stato, 
   visualizzare il carico della rete o i valori relativi al protocollo Spanning Tree fra gli switch
 * aprire e chiudere contenitori da interfaccia utente
@@ -122,7 +138,11 @@ Essa ha 2 campi fondamentali:
 
 Di seguito il semplice schema E-R dell'applicazione `map`.
 
-TODO: schema E-R per le mappe
+.. figure:: _static/map-ER.png
+	:align: center
+	:scale: 70
+
+	Schema E-R per le mappe
 
 Come dicevamo 
 `MapRoot`, `OpenContainer`, `OpenNode`, `ClosedContainer`, `ClosedNode`, `ClosedIface`, `MapEdge` non 
@@ -224,4 +244,17 @@ A corredare il tutto non poteva mancare un modulo per interagire con le mappe di
 e viceversa. Questo è il modulo Flex Ajax Bridge provvisto da Adobe stessa (file `bridge/FABridge.as`) ed è 
 stato fondamentale per dare coerenza nel tooltip informativo delle risorse e nel menu contestuale.
 
-TODO: immagine mappe nuove
+.. figure:: _static/map2-esempio-georeferenz.png
+	:align: center
+
+	Mappa con sfondo georeferenziato (precaricato)
+
+.. figure:: _static/map2-MAN-dettaglio.png
+	:align: center
+
+	Dettaglio di una MAN: notare gli archi doppi che partono dal grande edificio giallo a destra
+
+.. figure:: _static/map2-apparati.png
+	:align: center
+
+	Mappa di apparati: anche qui si notano archi doppi fra apparati ridondati

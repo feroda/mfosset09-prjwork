@@ -75,11 +75,17 @@ Il minimo indispensabile:
 La strada è tracciata. SANET è su Sourceforge.net. 
 
 Ora inizia un percorso: dalla cattedrale si va verso il bazaar.
-Riportiamo a questo proposito la figura `TODO figure` riferita allo studio 
+Riportiamo a questo proposito la figura :ref:`from-the-cathedral-to-the-bazaar` riferita allo studio 
 `From the Cathedral to the Bazaar: An Empirical Study of the Lifecycle of Volunteer Community Projects` 
 di `Andrea Capiluppi e Martin Michlmayr`. 
 
-TODO: immagine dalla cattedrale al bazaar
+.. _from-the-cathedral-to-the-bazaar:
+
+.. figure:: _static/DallaCattedraleAlBazaar.png
+    :align: center 
+	:scale: 80
+
+	From the Cathedral to the Bazaar 
 
 Nello studio i due autori spiegano come ogni progetto disseminato nel bazaar parta da una prima fase
 caratterizzata dall'approccio a cattedrale.

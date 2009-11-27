@@ -140,7 +140,13 @@ implementa il meccanismo dei contenitori che era totalmente assente nel sistema 
 Le caratteristiche dei controlli, il loro stato e il valore delle misurazioni venivano scritti nel database
 e letti dallo application server che ne poteva così produrre la rappresentazione
 
-TODO: immagine con DB e Django + Pinger ??
+.. _dev-first-architecture:
+
+.. figure:: _static/DjangoAndPinger.png
+	:align: center
+	:scale: 70
+
+	RDBMS + Web (legge conf e stato) + Pinger (legge conf, scrive conf e stato)
 
 Fase 2: CLI e mappe
 -------------------
@@ -198,7 +204,14 @@ Ora si possono definire molti più controlli con meno sforzo.
 
 La configurazione e la rappresentazione sono in mano a SANET. Notare che non viene provvisto, e ad oggi non è ancora implementato, un modo per configurare via web i parametri dei controlli: ciò è dovuto alla consapevolezza delle complesse realtà di rete gestite dall'azienda che non si possono normalizzare con l'esposizione di interfacce cosiddette `user-friendly`.
 
-TODO: immagine con DB e Django + CLI + Pinger
+.. _dev-second-architecture:
+
+.. figure:: _static/DjangoAndPingerAndCLI.png
+	:align: center
+	:scale: 70
+
+	RDBMS + Web (legge conf e stato, scrive note e mappe) + CLI (scrive conf su RDBMS) + Pinger (legge conf e scrive stato su RDBMS)
+
 
 Fase 3: Poller
 --------------
@@ -235,7 +248,13 @@ Ora il vecchio `pinger` è completamente sradicato e SANET lo sostituisce comple
 Un ulteriore miglioramento per la fruibilità dei dati è costituito dalla segnalazione degli allarmi tramite `feed RSS`,
 o dal recupero degli stessi tramite una semplice interfaccia `XML-RPC` che ricorda l'operazione `snmpwalk`.
 
-TODO: immagine con DB e Django + CLI + Poller
+.. _dev-architecture:
+
+.. figure:: _static/Architettura.png
+	:align: center
+	:scale: 70
+
+	Architettura completa di SANET (RDBMS + Web + CLI + Poller)
 
 L'impulso del Master FOSSET0809
 -------------------------------
@@ -254,9 +273,15 @@ e in particolare:
 * strumenti di `literate programming` 
 
 In questo modo abbiamo potuto realizzare l'infrastruttura di sviluppo presentata 
-in figura :fig:`infrastruttura` TODO.
+in figura :ref:`dev-infrastructure`.
 
-TODO: immagine ... infrastruttura di sviluppo
+.. _dev-infrastructure:
+
+.. figure:: _static/InfrastrutturaDiSviluppo.png
+	:align: center
+	:scale: 70
+
+	Schema dell'infrastruttura di sviluppo
 
 Per quello che riguarda il corso di `Project management` invece, abbiamo cercato di mantenere,
 man mano che il team si allargava (con l'arrivo del nuovo sviluppatore) un approccio `Agile` alla risoluzione 
@@ -284,7 +309,10 @@ Alcune sperimentazioni e introduzioni importanti sono derivate dai progetti:
   Esso consente a SANET (e non solo) di implementare una serie innumerevole di nuovi controlli
   dato che esporta via SNMP informazioni su match di espressioni regolari in messaggi di `syslog`.
 
-  TODO: Syslog collector (immagine)
+.. figure:: _static/SyslogCollector.png
+	:align: center
+
+	Syslog collector
 
 * Il lavoro effettuato per il supporto ai `prepared statement` in Django con `backend` PostgreSQL per il 
   corso di `Basi di dati e applicazioni web` è servito per capire che non avremmo avuto un aumento
