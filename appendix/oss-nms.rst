@@ -14,7 +14,7 @@ gli aspetti tecnici più nascosti per cui si è deciso di sviluppare un sistema 
 per il monitoraggio delle reti.
 
 Inizia qui il messaggio reperibile all'indirizzo 
-`[c-nsp] Free NMS Tools <https://puck.nether.net/pipermail/cisco-nsp/2009-July/062347.html>`__.
+`[c-nsp] Free NMS Tools <https://puck.nether.net/pipermail/cisco-nsp/2009-July/062347.html>`__::
 
     Michele Bergonzoni bergonz at labs.it
     Fri Jul 17 09:26:28 EDT 2009
