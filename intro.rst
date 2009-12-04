@@ -28,9 +28,9 @@ sia dal punto di vista tecnico, sia di approccio alla comunità.
 Viene riservata una corposa appendice con:
 
 * una analisi sulla sicurezza del software
-TODO * l'articolo di presentazione di SANET alla CONFSL09
 * una mail girata nella mailing-list cisco-nsp che presenta alcuni aspetti tecnici avanzati soddisfatti da SANET
 * l'analisi comparativa effettuata nella scelta fra le tecnologie SVG e FLASH.
+TODO * l'articolo di presentazione di SANET alla CONFSL09
 
 Buona lettura
 
