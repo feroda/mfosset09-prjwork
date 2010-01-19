@@ -67,7 +67,7 @@ Il minimo indispensabile:
 
 * viene inserito un file LICENSE con la licenza AGPLv3
 * viene creato un tarball dell'ultima versione stabile
-* viene rilasciato il pdf dell'articolo per la CONFSL09 come guida base per l'utente TODO ripportato in appendice ?
+* viene rilasciato il pdf dell'articolo per la CONFSL09 come guida base per l'utente 
 * viene creata la home page del progetto: http://sanet.sourceforge.net
 * viene attivato e impostato l'ambiente TRAC con le prossime milestone
 * viene creato e registrato il canale irc #sanet nella rete freenode

@@ -1,4 +1,4 @@
-Appendice B - analisi della sicurezza di SANET
+Appendice B - Analisi della sicurezza di SANET
 ==============================================
 
 In questa appendice si vuole effettuare una breve disamina delle problematiche di sicurezza di SANET.
